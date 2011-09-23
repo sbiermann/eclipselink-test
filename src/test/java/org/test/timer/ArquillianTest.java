@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import org.junit.Before;
-import javax.persistence.PersistenceContext;
-import javax.persistence.EntityManager;
 import org.test.entity.Child;
 import org.test.service.ParentService;
 import java.io.IOException;
