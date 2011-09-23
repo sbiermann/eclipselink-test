@@ -42,5 +42,11 @@ public class ParentService implements Serializable
 			return Collections.emptyList();
 		}
 	}
+	
+	
+	public void persist(Object o)
+	{
+		em.persist( o );
+	}
 
 }

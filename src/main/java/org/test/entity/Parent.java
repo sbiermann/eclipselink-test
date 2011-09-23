@@ -44,7 +44,13 @@ public class Parent implements Serializable
 	{
 		return children;
 	}
+	
+	public void setChildren( Set<Child> children )
+	{
+		this.children = children;
+	}
 
+	
 
 	@Override
 	public int hashCode()
