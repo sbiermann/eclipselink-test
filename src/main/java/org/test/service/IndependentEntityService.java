@@ -31,10 +31,11 @@ public class IndependentEntityService
 	}
 	
 	
-	public void merge( IndependentEntity ie )
+	public IndependentEntity merge( IndependentEntity ie )
 	{
-		em.merge( ie );
+		IndependentEntity merged = em.merge( ie );
 		em.flush();
+		return merged;
 	}
 
 }
