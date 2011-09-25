@@ -1,4 +1,4 @@
-package org.test.timer;
+package org.test.integration;
 
 import javax.ejb.EJB;
 import java.util.List;
@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
  * @author sbn
  */
 @RunWith( Arquillian.class )
-public class ArquillianTest
+public class DuplicateKeyTest
 {
 	
 	@EJB
