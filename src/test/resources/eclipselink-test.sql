@@ -14,12 +14,12 @@ SET search_path = public, pg_catalog;
 ALTER TABLE ONLY public.parent_children DROP CONSTRAINT fk_parent_children_parent_id;
 ALTER TABLE ONLY public.sequence DROP CONSTRAINT sequence_pkey;
 ALTER TABLE ONLY public.parent DROP CONSTRAINT parent_pkey;
-ALTER TABLE ONLY public.independetentity DROP CONSTRAINT independetentity_pkey;
+ALTER TABLE ONLY public.independententity DROP CONSTRAINT independententity_pkey;
 ALTER TABLE ONLY public.entityrelation DROP CONSTRAINT entityrelation_pkey;
 DROP TABLE public.sequence;
 DROP TABLE public.parent_children;
 DROP TABLE public.parent;
-DROP TABLE public.independetentity;
+DROP TABLE public.independententity;
 DROP TABLE public.entityrelation;
 DROP SCHEMA public;
 --
@@ -50,10 +50,10 @@ CREATE TABLE entityrelation (
 
 
 --
--- Name: independetentity; Type: TABLE; Schema: public; Owner: -
+-- Name: independententity; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE independetentity (
+CREATE TABLE independententity (
     id bigint NOT NULL
 );
 
@@ -97,7 +97,7 @@ INSERT INTO entityrelation VALUES (3);
 
 
 --
--- Data for Name: independetentity; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: independententity; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 
@@ -138,11 +138,11 @@ ALTER TABLE ONLY entityrelation
 
 
 --
--- Name: independetentity_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: independententity_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY independetentity
-    ADD CONSTRAINT independetentity_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY independententity
+    ADD CONSTRAINT independententity_pkey PRIMARY KEY (id);
 
 
 --
