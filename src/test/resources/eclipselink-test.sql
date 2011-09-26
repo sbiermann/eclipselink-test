@@ -45,7 +45,9 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE entityrelation (
-    id bigint NOT NULL
+    id bigint NOT NULL,
+	relationname character varying(255),
+	relationtype character varying(255)
 );
 
 
@@ -73,6 +75,7 @@ CREATE TABLE parent (
 
 CREATE TABLE parent_children (
     entityrelation_id bigint,
+    childname character varying(255),
     parent_id bigint NOT NULL
 );
 
@@ -91,9 +94,9 @@ CREATE TABLE sequence (
 -- Data for Name: entityrelation; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO entityrelation VALUES (1);
-INSERT INTO entityrelation VALUES (2);
-INSERT INTO entityrelation VALUES (3);
+INSERT INTO entityrelation VALUES (1, 'relation1', 'STRING_T');
+INSERT INTO entityrelation VALUES (2, 'relation2', 'INTEGER_T');
+INSERT INTO entityrelation VALUES (3, 'relation3', 'DATE_T');
 
 
 --
@@ -114,12 +117,12 @@ INSERT INTO parent VALUES (2);
 -- Data for Name: parent_children; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO parent_children VALUES (1, 1);
-INSERT INTO parent_children VALUES (2, 1);
-INSERT INTO parent_children VALUES (3, 1);
-INSERT INTO parent_children VALUES (1, 2);
-INSERT INTO parent_children VALUES (2, 2);
-INSERT INTO parent_children VALUES (3, 2);
+INSERT INTO parent_children VALUES (1, 'child1', 1);
+INSERT INTO parent_children VALUES (2, 'child2', 1);
+INSERT INTO parent_children VALUES (3, 'child3', 1);
+INSERT INTO parent_children VALUES (1, 'child4', 2);
+INSERT INTO parent_children VALUES (2, 'child5', 2);
+INSERT INTO parent_children VALUES (3, 'child6', 2);
 
 
 --
