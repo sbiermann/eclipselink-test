@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-  <persistence-unit name="eclipselinkPU" transaction-type="JTA">
+  <persistence-unit name="eclipselinkTestPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <jta-data-source>jdbc/eclipselink-test</jta-data-source>
+    <class>org.test.entity.Parent</class>
+    <class>org.test.entity.Child</class>
+    <class>org.test.entity.EntityRelation</class>
+    <class>org.test.entity.IndependentEntity</class>
     <properties>
+    	<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+    	<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/eclipselink-test"/>
+    	<property name="javax.persistence.jdbc.user" value=""/>
+    	<property name="javax.persistence.jdbc.password" value=""/>
+    
 		<property name="eclipselink.target-database" value="PostgreSQL"/>
 		<property name="eclipselink.logging.level" value="FINEST"/>
 		<property name="eclipselink.logging.parameters" value="true"/>
