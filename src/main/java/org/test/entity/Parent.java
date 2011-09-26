@@ -1,6 +1,7 @@
 package org.test.entity;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,22 +35,25 @@ public class Parent implements Serializable
 	@ElementCollection
 	@CollectionTable( joinColumns = @JoinColumn( name = "parent_id", nullable = false ) )
 	private Set<Child> children = new HashSet<Child>();
+	
+	
+	public Parent() {}
+	public Parent( Set<Child> children )
+	{
+		this.children = children;
+	}
 
+	
 	public Long getId()
 	{
 		return id;
 	}
 
-	public Set<Child> getChilds()
-	{
-		return children;
-	}
 	
-	public void setChildren( Set<Child> children )
+	public Set<Child> getChildren()
 	{
-		this.children = children;
+		return Collections.unmodifiableSet( children );
 	}
-
 	
 
 	@Override

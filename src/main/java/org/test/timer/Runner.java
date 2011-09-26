@@ -41,10 +41,10 @@ public class Runner
 			log.debug( "Select or create IndependetEntity ..." );
 			IndependentEntity ie = is.selectOrCreate( -1L );
 			log.debug( "Get childs for parent: {} ...", parent.getId() );
-			log.debug( "{} childs for parent: {} found.", parent.getChilds().size(), parent.getId() );
-			for( Child child : parent.getChilds() )
+			log.debug( "{} childs for parent: {} found.", parent.getChildren().size(), parent.getId() );
+			for( Child child : parent.getChildren() )
 			{
-				log.debug( "Found child: {}", child );
+				log.debug( "Found child: {} ({})", child.getChildName(), child );
 				log.debug( "Get EntityRelation: {}", child.getEntityRelation() );
 			}
 			log.debug( "Merge IndependentEntity ..." );

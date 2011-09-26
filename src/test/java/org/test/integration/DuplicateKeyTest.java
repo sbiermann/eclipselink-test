@@ -18,6 +18,7 @@ import org.junit.Test;
 import org.test.entity.EntityRelation;
 import org.test.entity.IndependentEntity;
 import org.test.entity.Parent;
+import org.test.entity.RelationType;
 import static org.junit.Assert.*;
 
 
@@ -54,10 +55,10 @@ public class DuplicateKeyTest
 		assertEquals( 2, parents.size() );
 		for( Parent parent : parents )
 		{
-			assertEquals( 3, parent.getChilds().size() );
+			assertEquals( 3, parent.getChildren().size() );
 			IndependentEntity ie = is.selectOrCreate( -1L );
 			assertNull( ie.getId() );
-			for( Child child : parent.getChilds() )
+			for( Child child : parent.getChildren() )
 			{
 				assertNotNull( child.getEntityRelation() );
 			}
@@ -72,22 +73,20 @@ public class DuplicateKeyTest
 		List<EntityRelation> ers = new ArrayList<EntityRelation>();
 		for( int i=0; i<3; i++ )
 		{
-			EntityRelation er = new EntityRelation();
+			EntityRelation er = new EntityRelation( "relation" + String.valueOf( i ), RelationType.STRING_T);
 			ps.persist( er );
 			ers.add( er );
 		}
 		
 		for( int i=0; i<2; i++ )
 		{
-			Parent p = new Parent();
 			Set<Child> childs = new HashSet<Child>();
 			for( EntityRelation er : ers )
 			{
-				Child c = new Child();
-				c.setEntityRelation( er );
+				Child c = new Child( String.valueOf( i ) + " - " + er.toString() , er );
 				childs.add( c );
 			}
-			p.setChildren( childs );
+			Parent p = new Parent( childs );
 			ps.persist( p );
 		}
 	}

@@ -15,20 +15,30 @@ public class Child implements Serializable
 
 	@ManyToOne( optional = false )
 	private EntityRelation entityRelation;
+	
+	private String childName;
+	
+	
+	public Child() {}
+	public Child( String childName, EntityRelation entityRelation )
+	{
+		this.childName = childName;
+		this.entityRelation = entityRelation;
+	}
 
-
+	
 	public EntityRelation getEntityRelation()
 	{
 		return entityRelation;
 	}
-
-
-	public void setEntityRelation( EntityRelation entityRelation )
+	
+	
+	public String getChildName()
 	{
-		this.entityRelation = entityRelation;
+		return childName;
 	}
-
-
+	
+	
 	@Override
 	public boolean equals( Object obj )
 	{
@@ -50,5 +60,5 @@ public class Child implements Serializable
 		hash = 97 * hash + (this.entityRelation != null ? this.entityRelation.hashCode() : 0);
 		return hash;
 	}
-
+	
 }
