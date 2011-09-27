@@ -62,8 +62,8 @@ public class EntityRelation implements Serializable
 		final EntityRelation other = ( EntityRelation ) obj;
 		if( (this.relationName == null) ? (other.relationName != null) : !this.relationName.equals( other.relationName ) )
 			return false;
-		if( this.relationType != other.relationType )
-			return false;
+//		if( this.relationType != other.relationType )
+//			return false;
 		return true;
 	}
 
@@ -73,7 +73,7 @@ public class EntityRelation implements Serializable
 	{
 		int hash = 5;
 		hash = 67 * hash + (this.relationName != null ? this.relationName.hashCode() : 0);
-		hash = 67 * hash + (this.relationType != null ? this.relationType.hashCode() : 0);
+//		hash = 67 * hash + (this.relationType != null ? this.relationType.hashCode() : 0);
 		return hash;
 	}
 	
