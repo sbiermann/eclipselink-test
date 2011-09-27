@@ -66,6 +66,7 @@ public class DuplicateKeyTest
 	@Test
 	public void forceDuplicateKeyException() throws Exception
 	{
+		cleanUpDBInOwnTransaction();
 		setUpDBInOwnTransaction();
 
 		em.getTransaction().begin();
@@ -96,31 +97,23 @@ public class DuplicateKeyTest
 	private void setUpDBInOwnTransaction() throws Exception
 	{
 		em.getTransaction().begin();
-		List<EntityRelation> ers = new ArrayList<EntityRelation>();
-		for ( int i = 0; i < 3; i++ )
-		{
-			EntityRelation er = null;
-			if ( i == 0 )
-				er = new EntityRelation( "relation" + String.valueOf( i ), RelationType.STRING_T );
-			if ( i == 1 )
-				er = new EntityRelation( "relation" + String.valueOf( i ), RelationType.INTEGER_T );
-			if ( i == 2 )
-				er = new EntityRelation( "relation" + String.valueOf( i ), RelationType.DATE_T );
-			em.persist( er );
-			ers.add( er );
-		}
 
-		for ( int i = 0; i < 2; i++ )
-		{
-			Set<Child> childs = new HashSet<Child>();
-			for ( EntityRelation er : ers )
-			{
-				Child c = new Child( "child" + String.valueOf( i ), er );
-				childs.add( c );
-			}
-			Parent p = new Parent( childs );
-			em.persist( p );
-		}
+		em.createNativeQuery( "INSERT INTO entityrelation VALUES (1, 'relation1', 'STRING_T')" ).executeUpdate();
+		em.createNativeQuery( "INSERT INTO entityrelation VALUES (2, 'relation2', 'INTEGER_T')" ).executeUpdate();
+		em.createNativeQuery( "INSERT INTO entityrelation VALUES (3, 'relation3', 'DATE_T')" ).executeUpdate();
+		
+		em.createNativeQuery( "INSERT INTO parent VALUES (1)" ).executeUpdate();
+		em.createNativeQuery( "INSERT INTO parent VALUES (2)" ).executeUpdate();
+
+		em.createNativeQuery( "INSERT INTO parent_children VALUES (1, 'child1', 1)" ).executeUpdate();
+		em.createNativeQuery( "INSERT INTO parent_children VALUES (2, 'child2', 1)" ).executeUpdate();
+		em.createNativeQuery( "INSERT INTO parent_children VALUES (3, 'child3', 1)" ).executeUpdate();
+		em.createNativeQuery( "INSERT INTO parent_children VALUES (1, 'child4', 2)" ).executeUpdate();
+		em.createNativeQuery( "INSERT INTO parent_children VALUES (2, 'child5', 2)" ).executeUpdate();
+		em.createNativeQuery( "INSERT INTO parent_children VALUES (3, 'child6', 2)" ).executeUpdate();
+		
+		em.createNativeQuery( "INSERT INTO sequence VALUES ('SEQ_GEN', 50)" ).executeUpdate();
+		
 		em.getTransaction().commit();
 		destroyEntityManager();
 		createEntityManager();
@@ -134,6 +127,7 @@ public class DuplicateKeyTest
 		em.createNativeQuery( "DELETE FROM parent" ).executeUpdate();
 		em.createNativeQuery( "DELETE FROM entityrelation" ).executeUpdate();
 		em.createNativeQuery( "DELETE FROM independententity" ).executeUpdate();
+		em.createNativeQuery( "DELETE FROM sequence WHERE seq_name = 'SEQ_GEN'" ).executeUpdate();
 		em.getTransaction().commit();
 		destroyEntityManager();
 		createEntityManager();
