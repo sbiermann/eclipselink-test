@@ -13,8 +13,14 @@
     	<property name="javax.persistence.jdbc.password" value=""/>
     
 		<property name="eclipselink.target-database" value="PostgreSQL"/>
+		<property name="eclipselink.cache.shared.default" value="false"/>
+		<property name="eclipselink.weaving" value="static"/>
 		<property name="eclipselink.logging.level" value="FINEST"/>
 		<property name="eclipselink.logging.parameters" value="true"/>
+
+<!-- 		<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/> -->
+<!-- 		<property name="eclipselink.ddl-generation.output-mode" value="sql-script"/> -->
+<!-- 		<property name="eclipselink.application-location" value="/home/luc4/workspace/eclipselink-test/"/> -->
     </properties>
   </persistence-unit>
 </persistence>
