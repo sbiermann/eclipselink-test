@@ -3,8 +3,6 @@ package org.test.integration;
 import javax.ejb.EJB;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
 import org.test.entity.Child;
 import org.test.service.IndependentEntityService;
 import org.test.service.ParentService;
@@ -80,7 +78,7 @@ public class DuplicateKeyTest
 		
 		for( int i=0; i<2; i++ )
 		{
-			Set<Child> childs = new HashSet<Child>();
+			List<Child> childs = new ArrayList<Child>();
 			for( EntityRelation er : ers )
 			{
 				Child c = new Child( String.valueOf( i ) + " - " + er.toString() , er );

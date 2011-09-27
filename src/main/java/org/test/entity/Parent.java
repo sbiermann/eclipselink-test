@@ -1,8 +1,10 @@
 package org.test.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -34,11 +36,11 @@ public class Parent implements Serializable
 
 	@ElementCollection
 	@CollectionTable( joinColumns = @JoinColumn( name = "parent_id", nullable = false ) )
-	private Set<Child> children = new HashSet<Child>();
+	private List<Child> children = new ArrayList<Child>();
 	
 	
 	public Parent() {}
-	public Parent( Set<Child> children )
+	public Parent( List<Child> children )
 	{
 		this.children = children;
 	}
@@ -50,9 +52,9 @@ public class Parent implements Serializable
 	}
 
 	
-	public Set<Child> getChildren()
+	public List<Child> getChildren()
 	{
-		return Collections.unmodifiableSet( children );
+		return Collections.unmodifiableList( children );
 	}
 	
 
