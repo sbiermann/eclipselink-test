@@ -129,7 +129,7 @@ INSERT INTO parent_children VALUES (3, 'child6', 2);
 -- Data for Name: sequence; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO sequence VALUES ('SEQ_GEN', 250);
+INSERT INTO sequence VALUES ('SEQ_GEN', 50);
 
 
 --
